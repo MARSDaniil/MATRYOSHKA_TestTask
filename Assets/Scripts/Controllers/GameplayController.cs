@@ -14,8 +14,8 @@ namespace CookingPrototype.Controllers {
 		public GameObject TapBlock   = null;
 		public WinWindow  WinWindow  = null;
 		public LoseWindow LoseWindow = null;
-
-
+		[SerializeField] private StartWindow StartWindow;
+		[SerializeField] private GameObject TopOfPanel;
 		int _ordersTarget = 0;
 
 		public int OrdersTarget {
@@ -30,6 +30,14 @@ namespace CookingPrototype.Controllers {
 
 		public event Action TotalOrdersServedChanged;
 
+		private bool isGameStarted;
+
+		public bool IsGameStarted {
+			get {
+				return isGameStarted;
+			}
+		}
+
 		void Awake() {
 			if ( Instance != null ) {
 				Debug.LogError("Another instance of GameplayController already exists");
@@ -41,6 +49,11 @@ namespace CookingPrototype.Controllers {
 			if ( Instance == this ) {
 				Instance = null;
 			}
+		}
+
+		private void Start() {
+			Init();
+			HideWindows();
 		}
 
 		void Init() {
@@ -55,9 +68,17 @@ namespace CookingPrototype.Controllers {
 			}
 		}
 
+		public void StartGame() {
+			isGameStarted = true;
+
+			StartWindow?.Hide();
+			TopOfPanel?.SetActive(true);
+		}
+
 		void EndGame(bool win) {
 			Time.timeScale = 0f;
 			TapBlock?.SetActive(true);
+			isGameStarted = false;
 			if ( win ) {
 				WinWindow.Show();
 			} else {
@@ -67,8 +88,10 @@ namespace CookingPrototype.Controllers {
 
 		void HideWindows() {
 			TapBlock?.SetActive(false);
+			StartWindow?.Show();
 			WinWindow?.Hide();
 			LoseWindow?.Hide();
+			TopOfPanel?.SetActive(false);
 		}
 
 		[UsedImplicitly]

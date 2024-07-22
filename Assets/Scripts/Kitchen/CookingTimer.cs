@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using System;
+using CookingPrototype.Controllers;
 
 namespace CookingPrototype.Kitchen {
 	public sealed class CookingTimer : MonoBehaviour {

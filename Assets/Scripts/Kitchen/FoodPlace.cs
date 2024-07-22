@@ -1,6 +1,7 @@
 using UnityEngine;
 
 using System;
+using CookingPrototype.Controllers;
 
 namespace CookingPrototype.Kitchen {
 	public class FoodPlace : AbstractFoodPlace {
@@ -30,6 +31,10 @@ namespace CookingPrototype.Kitchen {
 		}
 
 		void Update() {
+			if ( !GameplayController.Instance.IsGameStarted ) {
+				return;
+			}
+
 			if ( IsFree || !Cook || !IsCooking ) {
 				return;
 			}
