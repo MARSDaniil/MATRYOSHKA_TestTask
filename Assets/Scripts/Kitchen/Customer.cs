@@ -71,6 +71,15 @@ namespace CookingPrototype.Kitchen {
 			_timer = 0f;
 		}
 
+		public bool ConstainOrder(Order order) {
+			foreach( Order customersOrder in _orders ) {
+				if( customersOrder == order ) {
+					return true;
+				}
+			}
+			return false;
+		}
+
 		[UsedImplicitly]
 		public bool ServeOrder(Order order) {
 			var place = OrderPlaces.Find(x => x.CurOrder == order);
