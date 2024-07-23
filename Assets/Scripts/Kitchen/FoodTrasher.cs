@@ -11,6 +11,10 @@ namespace CookingPrototype.Kitchen {
 		FoodPlace _place = null;
 		float     _timer = 0f;
 
+		private int clickCount = 0;
+		private float clickTime = 0;
+		[SerializeField] private const float clickDelay = 0.5f;
+
 		void Start() {
 			_place = GetComponent<FoodPlace>();
 			_timer = Time.realtimeSinceStartup;
@@ -21,6 +25,19 @@ namespace CookingPrototype.Kitchen {
 		/// </summary>
 		[UsedImplicitly]
 		public void TryTrashFood() {
+
+			if(clickCount == 0 ) {
+				clickCount++;
+				clickTime = Time.time;
+				return;
+			}
+
+			if(Time.time >= clickTime + clickDelay) {
+				clickCount = 0;
+				return;
+			}
+
+
 			if ( _place != null ) {
 				if(!_place.IsFree && !_place.IsCooking ) {
 					_place.FreePlace();
