@@ -13,7 +13,7 @@ namespace CookingPrototype.Kitchen {
 
 		private int clickCount = 0;
 		private float clickTime = 0;
-		[SerializeField] private const float clickDelay = 0.5f;
+		private const float clickDelay = 0.5f;
 
 		void Start() {
 			_place = GetComponent<FoodPlace>();
