@@ -8,8 +8,8 @@ public sealed class StartWindow : Window
 {
 	#region Fields
 
-	[SerializeField] protected TMP_Text GoalText;
-	[SerializeField] protected Button StartButton;
+	[SerializeField] private TMP_Text GoalText;
+	[SerializeField] private Button StartButton;
 
 	#endregion
 
