@@ -70,7 +70,7 @@ namespace CookingPrototype.Controllers {
 
 		public void StartGame() {
 			isGameStarted = true;
-
+			TapBlock?.SetActive(false);
 			StartWindow?.Hide();
 			TopOfPanel?.SetActive(true);
 		}
@@ -87,7 +87,7 @@ namespace CookingPrototype.Controllers {
 		}
 
 		void HideWindows() {
-			TapBlock?.SetActive(false);
+			TapBlock?.SetActive(true);
 			StartWindow?.Show();
 			WinWindow?.Hide();
 			LoseWindow?.Hide();
