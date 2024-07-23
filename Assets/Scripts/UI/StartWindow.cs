@@ -16,7 +16,9 @@ public sealed class StartWindow : Window
 	#region Unity Events
 
 	private void OnDestroy() {
-		GameplayController.Instance.TotalOrdersServedChanged -= OnOrdersChanged;
+		if ( GameplayController.Instance != null ) {
+			GameplayController.Instance.TotalOrdersServedChanged -= OnOrdersChanged;
+		}
 	}
 
 	#endregion
